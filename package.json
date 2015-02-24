@@ -2,17 +2,23 @@
   "name": "essentiaWeb",
   "version": "0.0.0",
   "private": true,
-  "description": "",
-  "main": "app.js",
   "scripts": {
-    "test": "",
-    "start": "node app"
+    "start": "forever -w ./bin/www"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "express": "~4.12.0",
+    "express": "~4.11.1",
     "node-soundcloud": "0.0.1",
-    "handlebars": "~3.0.0"
+    "handlebars": "~3.0.0",
+    "body-parser": "~1.10.2",
+    "cookie-parser": "~1.3.3",
+    "debug": "~2.1.1",
+    "jade": "~1.9.1",
+    "morgan": "~1.5.1",
+    "serve-favicon": "~2.2.0",
+    "stylus": "0.42.3"
+  },
+  "devDependencies": {
+    "express-generator": "~4.11.2",
+    "forever": "~0.14.1"
   }
 }
