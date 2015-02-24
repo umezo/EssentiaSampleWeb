@@ -1,10 +1,9 @@
-var fs = require('fs');
-var doDownload = require('../lib/do_download');
+var doDownload = require('../lib/do-download');
+var LocalTrack = require('../lib/LocalTrack');
 
 var SC = require('node-soundcloud');
 SC.init(require(__dirname+'/../conf/soundcloud.json'));
 
-var SOUNDS_DIR = __dirname+'/../sounds';
 
 var router = require('express').Router();
 router.get('/', function(req, res, next) {
@@ -31,7 +30,10 @@ router.get('/:id/beats', function(req, res, next) {
   var localTrack = new LocalTrack(trackId);
 
   if (localTrack.exists()) {
-    res.render('tracks.html',{tracks:[]});
+    localTrack.beats(function(err,beats){
+      res.header('Content-Type','application/json');
+      res.send(JSON.stringify(beats));
+    });
     return;
   }
 
@@ -40,30 +42,14 @@ router.get('/:id/beats', function(req, res, next) {
     var streamMetaPath = track.stream_url.replace(/https?:\/\/[^\/]+\//,'/');
 
     SC.get(streamMetaPath, function(err, stream){
-      var file = stream.location.split('?')[0].split('/').pop();
-      doDownload(stream.location, localTrack.getDir(), file,function(err){
-        res.render('tracks.html',{tracks:[]});
+      doDownload(stream.location, localTrack.getDir(), localTrack.getFileName(), function(err){
+        localTrack.beats(function(err,beats){
+          res.header('Content-Type','application/json');
+          res.send(JSON.stringify(beats));
+        });
       });
     });
   });
 });
-
-function LocalTrack(trackId){
-  this.id = trackId;
-}
-LocalTrack.prototype.getDir = function(){
-  return SOUNDS_DIR+'/'+this.id;
-};
-LocalTrack.prototype.exists = function(){
-  try {
-    fs.statSync(this.getDir());
-    return true;
-  } catch(e) {
-    return false;
-  }
-};
-
-
-
 
 module.exports = router;
