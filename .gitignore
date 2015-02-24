@@ -28,4 +28,5 @@ node_modules
 .lock-wscript
 
 conf/soundcloud.json
+sounds/*
 !sounds/.gitkeep
