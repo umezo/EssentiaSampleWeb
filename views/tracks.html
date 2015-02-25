@@ -73,18 +73,45 @@
 <div class="container">
 <ul class="tracks">
 {{#each tracks}}
-	<li class="">
+	<li class="" >
 		<div class="tracks-track track">
-			<h3 class="track-title">{{title}}</h3>
-			<div class="track-waveform-container">
-				<a class="track-waveform-overlay" href="/tracks/{{id}}">Detect beats</a>
-				<img class="track-waveform" src="{{waveform_url}}" style="">
-				<div class="track-waveform-bg"></div>
-			</div>
+			<div class="track-soundcloud-container" data-track-permalink="{{permalink_url}}"></div>
+			<a class="track-waveform-overlay track-detect-beat" href="/tracks/{{id}}/beats">Detect beats</a>
+			<a class="track-waveform-overlay track-play-with-beat" href="/track/{{id}}/beats/stream">Play with beat</a>
+			<audio src="/tracks/{{id}}/beats/stream" preload='none' controls></audio>
 		</div>
 	</li>
 {{/each}}
 </ul>
 </div>
+
+<script src="//connect.soundcloud.com/sdk.js"></script>
+<script>
+  SC.initialize({});
+</script>
+<script>
+(function(){
+	var list = document.querySelectorAll('.track-soundcloud-container');
+	for (var i=0, n=list.length ; i<n ; i++) {
+		var elem = list[i];
+		SC.oEmbed(elem.getAttribute('data-track-permalink'),{maxheight:166},elem);
+	}
+
+	var tracks = document.querySelector('.tracks');
+	tracks.addEventListener('click',function(event){
+		var target = event.target;
+		if (target.classList.contains('track-detect-beat')) {
+			event.preventDefault();
+			event.stopPropagation();
+		}
+
+		if (target.classList.contains('track-play-with-beat')) {
+			event.preventDefault();
+			event.stopPropagation();
+		}
+	},false);
+})();
+</script>
+
 </body>
 </html>

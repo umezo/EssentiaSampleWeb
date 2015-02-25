@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "forever -w ./bin/www",
+    "start": "node ./bin/www",
     "test": "mocha --recursive test",
     "test_watch": "mocha --recursive -w test "
   },
@@ -18,7 +18,8 @@
     "morgan": "~1.5.1",
     "serve-favicon": "~2.2.0",
     "stylus": "0.42.3",
-    "node-config": "0.0.2"
+    "config": "~1.12.0",
+    "js-yaml": "~3.2.7"
   },
   "devDependencies": {
     "express-generator": "~4.11.2",
@@ -27,6 +28,6 @@
     "mocha": "~2.1.0",
     "expect.js": "~0.3.1",
     "lodash": "~3.3.1",
-    "node-config": "0.0.2"
+    "rimraf": "~2.2.8"
   }
 }

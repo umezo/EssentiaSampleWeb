@@ -33,9 +33,6 @@ app.use(function(req, res, next) {
 var templateEngine = require('./lib/template_engine');
 app.engine('html', templateEngine);
 
-var SC = require('node-soundcloud');
-SC.init(require(__dirname+'/conf/soundcloud.json'));
-
 // error handlers
 
 // development error handler
