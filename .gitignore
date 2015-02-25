@@ -27,6 +27,6 @@ node_modules
 # Users Environment Variables
 .lock-wscript
 
-conf/soundcloud.json
+conf/*soundcloud*
 sounds/*
 !sounds/.gitkeep
