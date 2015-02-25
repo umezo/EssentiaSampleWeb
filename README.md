@@ -26,7 +26,7 @@ after that, create config file into config/local.yml.
 this is exsample of local.yml (because this file is read by config module, so [there are some other acceptable file formats](https://github.com/lorenwest/node-config/wiki/Configuration-Files))
 
 ```yml
-soundcloud
+soundcloud:
   id: xxxxxxxxxxxx
   secret: yyyyyyyyyyy
 ```
