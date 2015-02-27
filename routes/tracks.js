@@ -1,6 +1,7 @@
 var querystring = require('querystring');
 var fs = require('fs');
 var config = require('config');
+var _ = require('lodash');
 
 var SoundCloudTrackStore = require('../lib/store/SoundCloudTrackStore');
 var LocalTrack = require('../lib/store/LocalTrackStore');
@@ -19,13 +20,15 @@ router.get('/', function(req, res, next) {
     'duration[to]': 90 * 1000,
     tags:'house',
     filter:'public',
-    limit:5
+    limit:20
   });
   SC.get('/tracks?' + query, function(err, tracks) {
     if ( err ) {
       throw err;
     }
-    res.render('tracks.html',{tracks:tracks});
+    res.render('tracks.html',{
+      tracks:_.filter(tracks,function(e){return e.streamable;}).slice(0,5)
+    });
   });
 });
 
@@ -72,9 +75,7 @@ router.get('/:id/beats/stream', function(req, res, next) {
     var localTrack = new LocalTrack(filepath);
 
     localTrack.on('initialize',function(err,track){
-      res.header('Content-Type','audio');
-      var audio = fs.readFileSync(localTrack._beatsMarkedSoundFilePath());
-      res.end(audio,'binary');
+      res.redirect('/sounds/'+trackId+'/beats.mp3');
     }).on('error',function(err){
       res.send(JSON.stringify(err));
     });
