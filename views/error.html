@@ -7,84 +7,8 @@
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
-	<style class="--layout">
-		.tracks {
-			list-style:none;
-		}
-
-		.tracks .track {
-			margin-top:50px;
-		}
-
-		.track-waveform-container .track-waveform-overlay {
-			top:0;
-			bottom:0;
-			left:0;
-			right:0;
-			position:absolute;
-		}
-
-		.track:hover .track-overlay{ }
-		.track .track-title { }
-		.track .track-waveform-container {
-			position:relative;
-		}
-
-
-		.track .track-waveform {
-			height:40px;
-			width:100%;
-		}
-
-		.track .track-info {
-		}
-	</style>
-
-	<style class="--design">
-		.tracks {
-			list-style:none;
-		}
-
-		.track .track-waveform-container {
-		}
-
-		.track-waveform-container .track-waveform-overlay {
-			color:#FFF;
-			cursor:pointer;
-			text-align:center;
-			background-color:rgba(0,0,0,0.7);
-			opacity:0;
-			transition:opacity 0.2s linear;
-		}
-		.track-waveform-container:hover .track-waveform-overlay {
-			opacity:1;
-		}
-
-		.track .track-title { }
-		.track .track-waveform-container { }
-		.track .track-waveform {
-			background:#000;
-		}
-
-		.track .track-info { }
-	</style>
 </head>
 <body>
-<div class="container">
-<ul class="tracks">
-{{#each tracks}}
-	<li class="">
-		<div class="tracks-track track">
-			<h3 class="track-title">{{title}}</h3>
-			<div class="track-waveform-container">
-				<a class="track-waveform-overlay" href="/beat/detect?id={{id}}">Detect beats</a>
-				<img class="track-waveform" src="{{waveform_url}}" style="">
-				<div class="track-waveform-bg"></div>
-			</div>
-		</div>
-	</li>
-{{/each}}
-</ul>
-</div>
+えらーだよ
 </body>
 </html>

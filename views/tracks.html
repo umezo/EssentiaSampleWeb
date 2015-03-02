@@ -16,27 +16,25 @@
 			margin-top:50px;
 		}
 
-		.track-waveform-container .track-waveform-overlay {
-			top:0;
-			bottom:0;
-			left:0;
-			right:0;
-			position:absolute;
-		}
 
-		.track:hover .track-overlay{ }
-		.track .track-title { }
-		.track .track-waveform-container {
+		.beat-mark-track-container{
+			display:-webkit-box;
+			display:box;
+		}
+		.beat-mark-track-container .beat-visualization {
+			display:block;
 			position:relative;
+			width:16px;
 		}
-
-
-		.track .track-waveform {
-			height:40px;
-			width:100%;
+		.beat-mark-track-container .beat-visualization .beat-visualization-icon{
+			position:absolute;
+			bottom:0;
 		}
+		.beat-mark-track-container .beat-mark-player{
+			display:block;
 
-		.track .track-info {
+			-webkit-box-flex:1;
+			box-flex:1;
 		}
 	</style>
 
@@ -45,28 +43,9 @@
 			list-style:none;
 		}
 
-		.track .track-waveform-container {
+		.beat-mark-track-container .beat-visualization .beat-visualization-icon.beat{
+			bottom:10px;
 		}
-
-		.track-waveform-container .track-waveform-overlay {
-			color:#FFF;
-			cursor:pointer;
-			text-align:center;
-			background-color:rgba(0,0,0,0.7);
-			opacity:0;
-			transition:opacity 0.2s linear;
-		}
-		.track-waveform-container:hover .track-waveform-overlay {
-			opacity:1;
-		}
-
-		.track .track-title { }
-		.track .track-waveform-container { }
-		.track .track-waveform {
-			background:#000;
-		}
-
-		.track .track-info { }
 	</style>
 </head>
 <body>
@@ -76,42 +55,27 @@
 	<li class="" >
 		<div class="tracks-track track">
 			<div class="track-soundcloud-container" data-track-permalink="{{permalink_url}}"></div>
-			<a class="track-waveform-overlay track-detect-beat" href="/tracks/{{id}}/beats">Detect beats</a>
-			<a class="track-waveform-overlay track-play-with-beat" href="/track/{{id}}/beats/stream">Play with beat</a>
-			<audio src="/tracks/{{id}}/beats/stream" preload='none' controls></audio>
+			<div class="track-beat-mark-track" data-state-beats="/tracks/{{id}}/beats" data-state-stream="/tracks/{{id}}/beats/stream"></div>
 		</div>
 	</li>
 {{/each}}
 </ul>
 </div>
+<div id="example"></div>
 
 <script src="//connect.soundcloud.com/sdk.js"></script>
 <script>
-  SC.initialize({});
-</script>
-<script>
 (function(){
+  SC.initialize({});
 	var list = document.querySelectorAll('.track-soundcloud-container');
 	for (var i=0, n=list.length ; i<n ; i++) {
 		var elem = list[i];
 		SC.oEmbed(elem.getAttribute('data-track-permalink'),{maxheight:166},elem);
 	}
-
-	var tracks = document.querySelector('.tracks');
-	tracks.addEventListener('click',function(event){
-		var target = event.target;
-		if (target.classList.contains('track-detect-beat')) {
-			event.preventDefault();
-			event.stopPropagation();
-		}
-
-		if (target.classList.contains('track-play-with-beat')) {
-			event.preventDefault();
-			event.stopPropagation();
-		}
-	},false);
 })();
 </script>
+<script src="js/app.js"></script>
+
 
 </body>
 </html>
