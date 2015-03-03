@@ -6,7 +6,7 @@ var BeatPopElement = React.createClass({
   },
   render: function() {
     return (
-      <img className={"beat-visualization-icon "+(this.state.beat?'beat':'')} src={this.props.src} alt={this.props.alt}/>
+      <img className={"beat-visualization-icon "+(this.state.beat?'beat ':' ')+(this.state.isPlaying?'playing':'')} src={this.props.src} alt={this.props.alt}/>
     );
   }
 });
