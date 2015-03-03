@@ -11,7 +11,10 @@ var BeatMarkTrack = React.createClass({
    * @override
    */
   getInitialState: function () {
-    return {beat:false};
+    return {
+      beat:false,
+      isPlaying:false
+    };
   },
 
   //beat検知系
@@ -27,6 +30,7 @@ var BeatMarkTrack = React.createClass({
     this.beatEmitter.tickAt(audio.currentTime);
   },
   stopTimer: function(){
+    this.refs.pop.setState({isPlaying:false});
     if (!this._intervalId) {
       return;
     }
@@ -38,6 +42,7 @@ var BeatMarkTrack = React.createClass({
   onPlay: function(e){
     this._intervalId = setInterval(this.onTimer,SPF);
     this.beatEmitter.reset();
+    this.refs.pop.setState({isPlaying:true});
   },
   onPause: function(e){
     this.stopTimer();
@@ -79,7 +84,7 @@ var BeatMarkTrack = React.createClass({
     return  (
       <div className="beat-mark-track-container">
         <div className="beat-visualization">
-          <BeatPopElement src="/img/tv.gif" alt="" beat={this.state.beat} ref='pop'/>
+          <BeatPopElement src="/img/tv.gif" alt="" ref='pop'/>
         </div>
         <audio ref="audio" onTimeupdate={this.onTimeupdate} className="beat-mark-player" src={this.props.stream} preload='none' controls></audio>
       </div>

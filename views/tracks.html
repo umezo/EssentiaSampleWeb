@@ -29,7 +29,21 @@
 		.beat-mark-track-container .beat-visualization .beat-visualization-icon{
 			position:absolute;
 			bottom:0;
+			left:-16px;
+			opacity:0;
+			display:block;
+
+			transition:left .5s linear,opacity .5s linear;
 		}
+
+		.beat-mark-track-container .beat-visualization .beat-visualization-icon.playing{
+			position:absolute;
+			bottom:0;
+			left:0;
+			opacity:1;
+			display:block;
+		}
+
 		.beat-mark-track-container .beat-mark-player{
 			display:block;
 
@@ -44,7 +58,36 @@
 		}
 
 		.beat-mark-track-container .beat-visualization .beat-visualization-icon.beat{
-			bottom:10px;
+			bottom:0;
+			-webkit-animation: anime1 500ms linear;
+			transform-origin:bottom center;
+		}
+
+		@-webkit-keyframes anime1 {
+		  	0% {
+					transform:
+						scaleY(1)
+						scaleX(1)
+					;
+				}
+				5%{
+					transform:
+						scaleY(0.5)
+						scaleX(1.2)
+					;
+				}
+		  	20% {
+					transform:
+						scaleY(1)
+						scaleX(1)
+					;
+				}
+		  	100% {
+					transform:
+						scaleY(1)
+						scaleX(1)
+					;
+				}
 		}
 	</style>
 </head>
