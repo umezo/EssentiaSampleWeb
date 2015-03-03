@@ -28,6 +28,6 @@ node_modules
 .lock-wscript
 
 config/*local*
-sounds/*
-!sounds/.gitkeep
-public/js
+public/sounds/*
+!public/sounds/.gitkeep
+public/js/dist
