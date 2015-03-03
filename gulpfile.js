@@ -10,5 +10,5 @@ gulp.task('build', [], function (cb) {
 
 
 gulp.task('watch',['build'],function(){
-  gulp.watch('./client/**/*.jsx', ['build']);
+  gulp.watch('./public/js/src/**/*.jsx', ['build']);
 });
