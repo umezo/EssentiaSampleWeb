@@ -36,6 +36,7 @@
     "jsx-loader": "~0.12.2",
     "gulp-webpack": "~1.2.0",
     "superagent": "~0.21.0",
-    "react": "~0.12.2"
+    "react": "~0.12.2",
+    "beat-emitter.js": "~1.0.0"
   }
 }
