@@ -18,7 +18,7 @@ router.get('/', function(req, res, next) {
     'bpm[to]': 150,
     'duration[from]': 10 * 1000,
     'duration[to]': 90 * 1000,
-    tags:'house',
+    tags:req.query.tags||'house',
     filter:'public',
     limit:20
   });

@@ -86,7 +86,7 @@ var BeatMarkTrack = React.createClass({
         <div className="beat-visualization">
           <BeatPopElement src="/img/tv.gif" alt="" ref='pop'/>
         </div>
-        <audio ref="audio" onTimeupdate={this.onTimeupdate} className="beat-mark-player" src={this.props.stream} preload='none' controls></audio>
+        <audio ref="audio" onTimeupdate={this.onTimeupdate} className="beat-mark-player" src={this.props.stream} preload="none" controls></audio>
       </div>
     );
   }
