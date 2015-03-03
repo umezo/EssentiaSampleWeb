@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "nodemon -e js,yml ./bin/www",
+    "watch": "gulp watch",
     "test": "mocha --recursive test",
     "test_watch": "mocha --recursive -w test "
   },

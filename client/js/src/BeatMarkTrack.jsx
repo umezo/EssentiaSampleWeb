@@ -1,6 +1,6 @@
 /** @jsx React.DOM */
 var React = require('react');
-var BeatEmitter = require('../lib/beat-emitter').BeatEmitter;
+var BeatEmitter = require('beat-emitter.js').BeatEmitter;
 var BeatPopElement = require('./BeatPopElement');
 
 var FPS = 24;
