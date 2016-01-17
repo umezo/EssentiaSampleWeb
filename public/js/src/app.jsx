@@ -1,6 +1,6 @@
-/** @jsx React.DOM */
 var BeatMarkTrack = require('./BeatMarkTrack');
 var React = require('react');
+var ReactDOM = require('react-dom');
 
 var request = require('superagent');
 
@@ -20,6 +20,6 @@ function initiateBeatTrack(target){
     .set('Accept', 'application/json')
     .end(function(err,res){
       res = JSON.parse(res.text);
-      var beatTrack = React.render(( <BeatMarkTrack stream={stream} beats={res} />), target);
+      var beatTrack = ReactDOM.render(( <BeatMarkTrack stream={stream} beats={res} />), target);
     });
 }
