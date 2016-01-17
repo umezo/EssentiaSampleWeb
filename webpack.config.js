@@ -8,7 +8,10 @@ module.exports = {
       loaders: [
         {
           test: /\.jsx$/,
-          loader: 'jsx-loader'
+          loader: 'babel',
+          query: {
+            presets: ['react']
+          }
         }
       ]
     },
