@@ -57,7 +57,6 @@ class TrackController {
   beats(req,res,next) {
     const trackId = req.params.id;
 
-
     const soundCloudTrackStore = new SoundCloudTrackStore(trackId);
     soundCloudTrackStore.download(SOUNDS_DIR+'/'+trackId,function(err,filepath){
       if (err) {throw err;}
