@@ -11,6 +11,7 @@ python + essentia + node + express
 Requirement
 ---------------------------------------
 - node
+    - 8.11.3
 - python
     - essentia
 
