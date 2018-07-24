@@ -6,7 +6,9 @@ var path = require('path');
 var fs = require('fs');
 var rimraf= require('rimraf');
 
-describe('SoundCloudTrackStore',function(){
+// soundcloud の APIを直接叩いているので無効にする
+// TODO APIのmocking
+describe.skip('SoundCloudTrackStore',function(){
   var soundsDir = __dirname+'/../fixtures/sounds';
 
   before(clean);

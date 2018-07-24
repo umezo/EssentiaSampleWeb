@@ -1,2 +1,5 @@
 dir:
   sounds: 'public/sounds'
+soundcloud:
+  id: xxxxxx
+  secret: zzzzzz
