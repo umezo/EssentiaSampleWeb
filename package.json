@@ -7,7 +7,8 @@
     "watch": "gulp watch",
     "build": "gulp build",
     "test": "mocha --recursive test",
-    "test_watch": "mocha --recursive -w test "
+    "test_watch": "mocha --recursive -w test",
+    "ci:prepare": "cp ./config/default.yml ./config/local.yml"
   },
   "dependencies": {
     "express": "~4.11.1",
