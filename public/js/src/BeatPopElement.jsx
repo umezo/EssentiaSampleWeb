@@ -1,5 +1,5 @@
-var React = require('react');
-var BeatPopElement = React.createClass({
+const React = require('react');
+const BeatPopElement = React.createClass({
   getInitialState: function () {
     return {beat:false};
   },

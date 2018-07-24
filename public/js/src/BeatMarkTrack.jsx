@@ -1,11 +1,11 @@
-var React = require('react');
-var BeatEmitter = require('beat-emitter.js').BeatEmitter;
-var BeatPopElement = require('./BeatPopElement');
+const React = require('react');
+const BeatEmitter = require('beat-emitter.js').BeatEmitter;
+const BeatPopElement = require('./BeatPopElement');
 
-var FPS = 24;
-var SPF = 1000/FPS;
+const FPS = 24;
+const SPF = 1000/FPS;
 
-var BeatMarkTrack = React.createClass({
+const BeatMarkTrack = React.createClass({
   /**
    * @override
    */
@@ -25,7 +25,7 @@ var BeatMarkTrack = React.createClass({
     this.refs.pop.setState({beat:false});
   },
   onTimer: function(){
-    var audio = this.refs.audio;
+    const audio = this.refs.audio;
     this.beatEmitter.tickAt(audio.currentTime);
   },
   stopTimer: function(){
@@ -54,7 +54,7 @@ var BeatMarkTrack = React.createClass({
    * @override
    */
   componentDidMount: function() {
-    var audioElem = this.refs.audio;
+    const audioElem = this.refs.audio;
     audioElem.addEventListener('play' ,this.onPlay,false);
     audioElem.addEventListener('ended',this.onEnded,false);
     audioElem.addEventListener('pause',this.onPause,false);
@@ -66,7 +66,7 @@ var BeatMarkTrack = React.createClass({
    * @override
    */
   componentWillUnmount: function() {
-    var audioElem = this.refs.audio;
+    const audioElem = this.refs.audio;
     audioElem.removeEventListener('play' ,this.onPlay,false);
     audioElem.removeEventListener('ended',this.onEnded,false);
     audioElem.removeEventListener('pause',this.onPause,false);
