@@ -33,7 +33,7 @@
     "babel-preset-react": "6.3.13",
     "beat-emitter.js": "1.0.0",
     "expect.js": "0.3.1",
-    "gulp": "3.8.11",
+    "gulp": "3.9.1",
     "lodash": "3.3.1",
     "mocha": "2.1.0",
     "nodemon": "1.3.7",
