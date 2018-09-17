@@ -5,55 +5,55 @@ const BeatPopElement = require('./BeatPopElement');
 const FPS = 24;
 const SPF = 1000/FPS;
 
-const BeatMarkTrack = React.createClass({
+class BeatMarkTrack extends React.Component {
   /**
    * @override
    */
-  getInitialState: function () {
+  getInitialState() {
     return {
       beat:false,
       isPlaying:false
     };
-  },
+  }
 
   //beat検知系
-  onBeat: function(e){
+  onBeat(e){
     this.refs.pop.setState({beat:true});
     setTimeout(this.offBeat,SPF*2);
-  },
-  offBeat: function(e){
+  }
+  offBeat(e){
     this.refs.pop.setState({beat:false});
-  },
-  onTimer: function(){
+  }
+  onTimer(){
     const audio = this.refs.audio;
     this.beatEmitter.tickAt(audio.currentTime);
-  },
-  stopTimer: function(){
+  }
+  stopTimer(){
     this.refs.pop.setState({isPlaying:false});
     if (!this._intervalId) {
       return;
     }
     clearInterval(this._intervalId);
     this._intervalId = null;
-  },
+  }
 
   //audio タグ関連
-  onPlay: function(e){
+  onPlay(e){
     this._intervalId = setInterval(this.onTimer,SPF);
     this.beatEmitter.reset();
     this.refs.pop.setState({isPlaying:true});
-  },
-  onPause: function(e){
+  }
+  onPause(e){
     this.stopTimer();
-  },
-  onEnded: function(e){
+  }
+  onEnded(e){
     this.stopTimer();
-  },
+  }
 
   /**
    * @override
    */
-  componentDidMount: function() {
+  componentDidMount() {
     const audioElem = this.refs.audio;
     audioElem.addEventListener('play' ,this.onPlay,false);
     audioElem.addEventListener('ended',this.onEnded,false);
@@ -61,11 +61,11 @@ const BeatMarkTrack = React.createClass({
 
     this.beatEmitter = new BeatEmitter(this.props.beats);
     this.beatEmitter.on('beat',this.onBeat);
-  },
+  }
   /**
    * @override
    */
-  componentWillUnmount: function() {
+  componentWillUnmount() {
     const audioElem = this.refs.audio;
     audioElem.removeEventListener('play' ,this.onPlay,false);
     audioElem.removeEventListener('ended',this.onEnded,false);
@@ -75,11 +75,11 @@ const BeatMarkTrack = React.createClass({
 
     this.beatEmitter.off('beat',this.onBeat);
     this.beatEmitter = null;
-  },
+  }
   /**
    * @override
    */
-  render: function() {
+  render() {
     return  (
       <div className="beat-mark-track-container">
         <div className="beat-visualization">
@@ -89,6 +89,6 @@ const BeatMarkTrack = React.createClass({
       </div>
     );
   }
-});
+};
 
 module.exports = BeatMarkTrack;
