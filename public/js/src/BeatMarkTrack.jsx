@@ -16,18 +16,18 @@ class BeatMarkTrack extends React.Component {
 
   //beat検知系
   onBeat(e){
-    this.refs.pop.setState({beat:true});
+    this.setState({beat:true});
     setTimeout(this.offBeat,SPF*2);
   }
   offBeat(e){
-    this.refs.pop.setState({beat:false});
+    this.setState({beat:false});
   }
   onTimer(){
     const audio = this.refs.audio;
     this.beatEmitter.tickAt(audio.currentTime);
   }
   stopTimer(){
-    this.refs.pop.setState({isPlaying:false});
+    this.setState({isPlaying:false});
     if (!this._intervalId) {
       return;
     }
@@ -39,7 +39,7 @@ class BeatMarkTrack extends React.Component {
   onPlay(e){
     this._intervalId = setInterval(this.onTimer,SPF);
     this.beatEmitter.reset();
-    this.refs.pop.setState({isPlaying:true});
+    this.setState({isPlaying:true});
   }
   onPause(e){
     this.stopTimer();
@@ -81,7 +81,7 @@ class BeatMarkTrack extends React.Component {
     return  (
       <div className="beat-mark-track-container">
         <div className="beat-visualization">
-          <BeatPopElement src="/img/tv.gif" alt="" ref='pop'/>
+          <BeatPopElement beat={this.state.beat} isPlaying={this.state.isPlaying} src="/img/tv.gif" alt="" ref='pop'/>
         </div>
         <audio ref="audio" onTimeupdate={this.onTimeupdate} className="beat-mark-player" src={this.props.stream} preload="none" controls />
       </div>
