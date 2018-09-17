@@ -1,7 +1,11 @@
 const React = require('react');
 class BeatPopElement extends React.Component {
-  getInitialState () {
-    return {beat:false};
+  constructor(props) {
+    super(props);
+    this.state = {
+      beat: false,
+      isPlaying: false
+    };
   }
 
   render() {

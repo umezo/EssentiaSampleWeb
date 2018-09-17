@@ -6,13 +6,11 @@ const FPS = 24;
 const SPF = 1000/FPS;
 
 class BeatMarkTrack extends React.Component {
-  /**
-   * @override
-   */
-  getInitialState() {
-    return {
-      beat:false,
-      isPlaying:false
+  constructor(props) {
+    super(props);
+    this.state = {
+      beat: false,
+      isPlaying: false,
     };
   }
 
