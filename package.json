@@ -17,7 +17,6 @@
     "debug": "4.0.1",
     "express": "4.16.3",
     "handlebars": "4.0.12",
-    "jade": "1.11.0",
     "js-yaml": "3.12.0",
     "morgan": "1.9.1",
     "node-download": "git+https://github.com/umezo/node-download.git",
