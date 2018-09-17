@@ -18,18 +18,21 @@ class BeatMarkTrack extends React.Component {
   }
 
   //beat検知系
-  onBeat(e){
+  onBeat = (e) => {
     this.setState({beat:true});
     setTimeout(this.offBeat,SPF*2);
   }
-  offBeat(e){
+
+  offBeat = (e) => {
     this.setState({beat:false});
   }
-  onTimer(){
+
+  onTimer = () => {
     const audio = this.refs.audio;
     this.beatEmitter.tickAt(audio.currentTime);
   }
-  stopTimer(){
+
+  stopTimer = () => {
     this.setState({isPlaying:false});
     if (!this._intervalId) {
       return;
@@ -39,15 +42,17 @@ class BeatMarkTrack extends React.Component {
   }
 
   //audio タグ関連
-  onPlay(e){
+  onPlay = (e) => {
     this._intervalId = setInterval(this.onTimer,SPF);
     this.beatEmitter.reset();
     this.setState({isPlaying:true});
   }
-  onPause(e){
+
+  onPause = (e) => {
     this.stopTimer();
   }
-  onEnded(e){
+
+  onEnded = (e) => {
     this.stopTimer();
   }
 
