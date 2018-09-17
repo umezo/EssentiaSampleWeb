@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "nodemon -e js,yml ./bin/www",
-    "watch": "gulp watch",
+    "watch": "build -- --watch",
     "build": "webpack --config ./webpack.config.js",
     "test": "mocha --recursive test",
     "test_watch": "mocha --recursive -w test",
@@ -17,15 +17,13 @@
     "debug": "4.0.1",
     "express": "4.16.3",
     "handlebars": "4.0.12",
-    "jade": "1.11.0",
     "js-yaml": "3.12.0",
     "morgan": "1.9.1",
     "node-download": "git+https://github.com/umezo/node-download.git",
     "node-soundcloud": "0.0.6",
     "node-spawn-util": "git+https://github.com/umezo/node-spawn-util.git",
     "serve-favicon": "2.5.0",
-    "soundcloud": "3.3.0",
-    "stylus": "0.54.5"
+    "soundcloud": "3.3.0"
   },
   "devDependencies": {
     "@babel/core": "7.0.1",
@@ -34,7 +32,6 @@
     "babel-loader": "8.0.2",
     "beat-emitter.js": "1.0.0",
     "expect.js": "0.3.1",
-    "gulp": "3.9.1",
     "lodash": "4.17.11",
     "mocha": "5.2.0",
     "nodemon": "1.18.4",
