@@ -12,6 +12,9 @@ class BeatMarkTrack extends React.Component {
       beat: false,
       isPlaying: false,
     };
+
+    this.beatEmitter = new BeatEmitter(this.props.beats);
+    this.beatEmitter.on('beat',this.onBeat);
   }
 
   //beat検知系
@@ -56,10 +59,8 @@ class BeatMarkTrack extends React.Component {
     audioElem.addEventListener('play' ,this.onPlay,false);
     audioElem.addEventListener('ended',this.onEnded,false);
     audioElem.addEventListener('pause',this.onPause,false);
-
-    this.beatEmitter = new BeatEmitter(this.props.beats);
-    this.beatEmitter.on('beat',this.onBeat);
   }
+
   /**
    * @override
    */
@@ -70,10 +71,8 @@ class BeatMarkTrack extends React.Component {
     audioElem.removeEventListener('pause',this.onPause,false);
 
     this.stopTimer();
-
-    this.beatEmitter.off('beat',this.onBeat);
-    this.beatEmitter = null;
   }
+
   /**
    * @override
    */
