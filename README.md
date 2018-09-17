@@ -21,6 +21,7 @@ Configuration
 this app requires your SoundCloud API Client id and secret.
 
 you need registeration as SoundCloud API Client [here](http://soundcloud.com/you/apps/new)
+(https://developers.soundcloud.com/)
 
 after that, create config file into config/local.yml.
 

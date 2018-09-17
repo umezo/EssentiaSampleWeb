@@ -5,90 +5,92 @@ const BeatPopElement = require('./BeatPopElement');
 const FPS = 24;
 const SPF = 1000/FPS;
 
-const BeatMarkTrack = React.createClass({
-  /**
-   * @override
-   */
-  getInitialState: function () {
-    return {
-      beat:false,
-      isPlaying:false
+class BeatMarkTrack extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      beat: false,
+      isPlaying: false,
     };
-  },
+
+    this.beatEmitter = new BeatEmitter(this.props.beats);
+    this.beatEmitter.on('beat',this.onBeat);
+  }
 
   //beat検知系
-  onBeat: function(e){
-    this.refs.pop.setState({beat:true});
+  onBeat = (e) => {
+    this.setState({beat:true});
     setTimeout(this.offBeat,SPF*2);
-  },
-  offBeat: function(e){
-    this.refs.pop.setState({beat:false});
-  },
-  onTimer: function(){
+  }
+
+  offBeat = (e) => {
+    this.setState({beat:false});
+  }
+
+  onTimer = () => {
     const audio = this.refs.audio;
     this.beatEmitter.tickAt(audio.currentTime);
-  },
-  stopTimer: function(){
-    this.refs.pop.setState({isPlaying:false});
+  }
+
+  stopTimer = () => {
+    this.setState({isPlaying:false});
     if (!this._intervalId) {
       return;
     }
     clearInterval(this._intervalId);
     this._intervalId = null;
-  },
+  }
 
   //audio タグ関連
-  onPlay: function(e){
+  onPlay = (e) => {
     this._intervalId = setInterval(this.onTimer,SPF);
     this.beatEmitter.reset();
-    this.refs.pop.setState({isPlaying:true});
-  },
-  onPause: function(e){
+    this.setState({isPlaying:true});
+  }
+
+  onPause = (e) => {
     this.stopTimer();
-  },
-  onEnded: function(e){
+  }
+
+  onEnded = (e) => {
     this.stopTimer();
-  },
+  }
 
   /**
    * @override
    */
-  componentDidMount: function() {
+  componentDidMount() {
     const audioElem = this.refs.audio;
     audioElem.addEventListener('play' ,this.onPlay,false);
     audioElem.addEventListener('ended',this.onEnded,false);
     audioElem.addEventListener('pause',this.onPause,false);
+  }
 
-    this.beatEmitter = new BeatEmitter(this.props.beats);
-    this.beatEmitter.on('beat',this.onBeat);
-  },
   /**
    * @override
    */
-  componentWillUnmount: function() {
+  componentWillUnmount() {
     const audioElem = this.refs.audio;
     audioElem.removeEventListener('play' ,this.onPlay,false);
     audioElem.removeEventListener('ended',this.onEnded,false);
     audioElem.removeEventListener('pause',this.onPause,false);
 
     this.stopTimer();
+  }
 
-    this.beatEmitter.off('beat',this.onBeat);
-    this.beatEmitter = null;
-  },
   /**
    * @override
    */
-  render: function() {
+  render() {
     return  (
       <div className="beat-mark-track-container">
         <div className="beat-visualization">
-          <BeatPopElement src="/img/tv.gif" alt="" ref='pop'/>
+          <BeatPopElement beat={this.state.beat} isPlaying={this.state.isPlaying} src="/img/tv.gif" alt="" ref='pop'/>
         </div>
-        <audio ref="audio" onTimeupdate={this.onTimeupdate} className="beat-mark-player" src={this.props.stream} preload="none" controls></audio>
+        <audio ref="audio" onTimeupdate={this.onTimeupdate} className="beat-mark-player" src={this.props.stream} preload="none" controls />
       </div>
     );
   }
-});
+};
 
 module.exports = BeatMarkTrack;
