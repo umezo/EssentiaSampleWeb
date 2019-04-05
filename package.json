@@ -17,7 +17,7 @@
     "debug": "4.0.1",
     "express": "4.16.3",
     "handlebars": "4.0.12",
-    "js-yaml": "3.12.0",
+    "js-yaml": "3.13.1",
     "morgan": "1.9.1",
     "node-download": "git+https://github.com/umezo/node-download.git",
     "node-soundcloud": "0.0.6",
