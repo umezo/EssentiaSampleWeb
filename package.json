@@ -11,7 +11,7 @@
     "ci:prepare": "cp ./config/default.yml ./config/local.yml"
   },
   "dependencies": {
-    "body-parser": "1.18.3",
+    "body-parser": "1.19.0",
     "config": "2.0.1",
     "cookie-parser": "1.4.3",
     "debug": "4.0.1",
