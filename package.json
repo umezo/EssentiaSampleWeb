@@ -29,7 +29,7 @@
     "@babel/core": "7.1.0",
     "@babel/plugin-proposal-class-properties": "7.1.0",
     "@babel/preset-react": "7.0.0",
-    "babel-loader": "8.0.2",
+    "babel-loader": "8.0.6",
     "beat-emitter.js": "1.0.0",
     "expect.js": "0.3.1",
     "lodash": "4.17.11",
