@@ -26,8 +26,8 @@
     "soundcloud": "3.3.0"
   },
   "devDependencies": {
-    "@babel/core": "7.1.0",
-    "@babel/plugin-proposal-class-properties": "7.1.0",
+    "@babel/core": "7.4.5",
+    "@babel/plugin-proposal-class-properties": "7.4.4",
     "@babel/preset-react": "7.0.0",
     "babel-loader": "8.0.2",
     "beat-emitter.js": "1.0.0",
